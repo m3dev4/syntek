@@ -86,6 +86,10 @@
     @apply bg-purple-gradient bg-cover bg-clip-text text-transparent;
   }
 
+  .auth{
+    @apply flex-center min-h-screen w-full bg-purple-100
+  }
+
   /* ===== ALIGNMENTS */
   .flex-center {
     @apply flex justify-center items-center;
