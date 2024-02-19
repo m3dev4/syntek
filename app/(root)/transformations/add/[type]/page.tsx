@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "@/components/shared/header";
 import { transformationTypes } from "@/constants";
-import TransformationForm from "@/components/shared/transformationForm";
+
 import { auth } from "@clerk/nextjs";
 import { getUserById } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
+import TransformationForm from "@/components/shared/TransformationForm";
 
 const AddTransformationPage = async ({ params: { type } }: SearchParamProps) => {
   const { userId } = auth()
@@ -18,11 +19,10 @@ const AddTransformationPage = async ({ params: { type } }: SearchParamProps) => 
       <Header title={transformation.title} subtitle={transformation.subTitle} />
 
       <TransformationForm 
-       action="Add"
-       userId={user.id}
-       type={transformation.type as TransformationTypeKey}
-       creditBalance={user.creditBalance}
-      />
+        action="Add"
+        userId={user.id}
+        type={transformation.type as TransformationTypeKey}
+        creditBalance={user.creditBalance} data={null}      />
     </>
   );
 };
