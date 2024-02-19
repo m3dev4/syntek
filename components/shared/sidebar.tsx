@@ -4,85 +4,99 @@ import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { navLinks } from '@/app/(root)/constants'
 import { usePathname } from 'next/navigation'
 import { Button } from '../ui/button'
+import { navLinks } from '@/constants'
 
 const SideBar = () => {
   const pathname = usePathname()
   return (
-    <aside className='sidebar'>
-      <div className='flex size-full flex-col gap-4'>
-       <Link href="/" className='sidebar-logo'>
-       <Image 
-       src="/assets/images/logo.svg"
-       alt="logo"
-       width={180}
-       height={28}
-       />
-       </Link>
-       <nav className='sidebar-nav'>
-        <SignedIn>
-          <ul className='sidebar-nav_elements'>
-           {navLinks.slice(0, 6).map((link) =>{
-            const isActive = link.route === pathname
+    <aside className="sidebar">
+    <div className="flex size-full flex-col gap-4">
+      {/* Logo */}
+      <Link href="/" className="sidebar-logo">
+        <Image
+          src="/assets/images/logot.svg"
+          alt="logo"
+          width={180}
+          height={28}
+        />
+      </Link>
 
-            return(
-              <li 
-              key={link.route} 
-              className={`sidebar-nav_element group ${isActive ? 'bg-purple-gradient text-white':
-              'text-gray-700'}`}>
-                <Link href={link.route} className='sidebar-link'>
-                  <Image 
-                  src={link.icon}
-                  alt="logo"
-                  width={24}
-                  height={24}
-                  className={`${isActive && 'brightness-200'}`}
-                  />
-                </Link>
-              </li>
-            )
-           })}
+      {/* Nav Items */}
+      <nav className="sidebar-nav">
+        <SignedIn>
+          <ul className="sidebar-nav_elements">
+            {/* Render up to Object recolor */}
+            {navLinks.slice(0, 6).map((link) => {
+              const isActive = link.route === pathname;
+
+              return (
+                <li
+                  key={link.route}
+                  className={`sidebar-nav_element group ${
+                    isActive
+                      ? "bg-purple-gradient text-white"
+                      : "text-dark-700"
+                  }`}
+                >
+                  <Link className="sidebar-link" href={link.route}>
+                    <Image
+                      src={link.icon}
+                      alt="logo"
+                      width={24}
+                      height={24}
+                      className={`${isActive && "brightness-200"}`}
+                    />
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
-           <ul className='sidebar-nav_elements'>
-           {navLinks.slice(6).map((link) =>{
-            const isActive = link.route === pathname
+          <ul className="sidebar-nav_elements">
+            {/* Render from profile to credits navLinks */}
+            {navLinks.slice(6).map((link) => {
+              const isActive = link.route === pathname;
 
-            return(
-              <li 
-              key={link.route} 
-              className={`sidebar-nav_element group ${isActive ? 'bg-purple-gradient text-white':
-              'text-gray-700'}`}>
-                <Link href={link.route} className='sidebar-link'>
-                  <Image 
-                  src={link.icon}
-                  alt="logo"
-                  width={24}
-                  height={24}
-                  className={`${isActive && 'brightness-200'}`}
-                  />
-                </Link>
-              </li>
-            )
-           })}
-           <li className='flex-center cursor-pointer gap-2 p-4'>
-            <UserButton afterSignOutUrl='/' showName />
-           </li>
+              return (
+                <li
+                  key={link.route}
+                  className={`sidebar-nav_element group ${
+                    isActive
+                      ? "bg-purple-gradient text-white"
+                      : "text-dark-700"
+                  }`}
+                >
+                  <Link className="sidebar-link" href={link.route}>
+                    <Image
+                      src={link.icon}
+                      alt="logo"
+                      width={24}
+                      height={24}
+                      className={`${isActive && "brightness-200"}`}
+                    />
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+
+            <li className="flex-center cursor-pointer gap-2 p-4">
+              <UserButton afterSignOutUrl="/" showName />
+            </li>
           </ul>
         </SignedIn>
 
         <SignedOut>
-          <Button asChild className='bg-purple-gradient button bg-cover'>
-            <Link href="/sign-in">
-             Se connecter
-            </Link>
+          <Button asChild className="button bg-purple-gradient bg-cover">
+            <Link href="/sign-in">Se connecter</Link>
           </Button>
         </SignedOut>
-       </nav>
-      </div>
-    </aside>
+      </nav>
+    </div>
+  </aside>
   )
 }
 

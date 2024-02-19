@@ -3,10 +3,12 @@ import { IBM_Plex_Sans } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs'
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/provider/themeProvider";
 
-const IBMPlex = IBM_Plex_Sans({ 
+
+const IBMPlex = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700'] ,
+  weight: ['400', '500', '600', '700'],
   variable: '---font-ibm-plex'
 });
 
@@ -22,9 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="fr">
-      <body className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>{children}</body>
-    </html>
+      <html lang="fr">
+        <body className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

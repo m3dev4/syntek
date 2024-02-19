@@ -12,7 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { navLinks } from "@/app/(root)/constants";
+import { navLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 
@@ -21,19 +21,21 @@ const MobileNav = () => {
 
   return (
     <header className="header">
-      <Link href="/" className="flex item-center gap-2 ùd:py-2">
-        <Image
-          src="/assets/images/logo.svg"
-          alt="logo"
-          width={180}
-          height={28}
-        />
-      </Link>
+    {/* LOGO */}
+    <Link href="/" className="flex items-center gap-2 md:py-2">
+      <Image
+        src="/assets/images/logo.svg"
+        alt="logo"
+        width={180}
+        height={28}
+      />
+    </Link>
 
-      <nav className="flex gap-2">
-        <SignedIn>
-          <UserButton afterSignOutUrl="/" />
-        </SignedIn>
+    {/* MENU ICON AS SHEET TRIGGER */}
+    <nav className="flex gap-2">
+      <SignedIn>
+        <UserButton afterSignOutUrl="/" />
+
         <Sheet>
           <SheetTrigger>
             <Image
@@ -51,27 +53,20 @@ const MobileNav = () => {
                 alt="logo"
                 width={152}
                 height={23}
-                className="cursor-pointer"
               />
+
               <ul className="header-nav_elements">
                 {navLinks.map((link) => {
                   const isActive = link.route === pathname;
 
                   return (
                     <li
-                      className={`${
-                        isActive && "gadient-text"
-                      } p-18 flex whitepace-nowrap text-dark-700`}
                       key={link.route}
+                      className={`${
+                        isActive && "gradient-text"
+                      } p-18-semibold flex whitespace-nowrap text-dark-700`}
                     >
-                      <Link href={link.route} className="sidebar-link">
-                        <Image
-                          src={link.icon}
-                          alt="logo"
-                          width={24}
-                          height={24}
-                        />
-                      </Link>
+                      <Link href={link.route}>{link.label}</Link>
                     </li>
                   );
                 })}
@@ -79,13 +74,15 @@ const MobileNav = () => {
             </>
           </SheetContent>
         </Sheet>
-        <SignedOut>
-          <Button asChild className="bg-purple-gradient button bg-cover">
-            <Link href="/sign-in">Se connecter</Link>
-          </Button>
-        </SignedOut>
-      </nav>
-    </header>
+      </SignedIn>
+
+      <SignedOut>
+        <Button asChild className="button bg-purple-gradient bg-cover">
+          <Link href="/sign-in">Se connecter</Link>
+        </Button>
+      </SignedOut>
+    </nav>
+  </header>
   );
 };
 
