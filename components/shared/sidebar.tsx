@@ -16,10 +16,10 @@ const SideBar = () => {
       {/* Logo */}
       <Link href="/" className="sidebar-logo">
         <Image
-          src="/assets/images/logot.svg"
+          src="/assets/images/logo.png"
           alt="logo"
           width={180}
-          height={28}
+          height={100}
         />
       </Link>
 
@@ -36,7 +36,7 @@ const SideBar = () => {
                   key={link.route}
                   className={`sidebar-nav_element group ${
                     isActive
-                      ? "bg-purple-gradient text-white"
+                      ? "bg-gradient-to-bl from-gray-700 via-gray-800 to-gray-800 text-white "
                       : "text-dark-700"
                   }`}
                 >
@@ -46,7 +46,7 @@ const SideBar = () => {
                       alt="logo"
                       width={24}
                       height={24}
-                      className={`${isActive && "brightness-200"}`}
+                      className={`${isActive && "bg-gradient-to-bl from-gray-600 via-gray-500 to-gray-700"}`}
                     />
                     {link.label}
                   </Link>
@@ -65,7 +65,7 @@ const SideBar = () => {
                   key={link.route}
                   className={`sidebar-nav_element group ${
                     isActive
-                      ? "bg-purple-gradient text-white"
+                      ? "bg-blue-700 text-white"
                       : "text-dark-700"
                   }`}
                 >

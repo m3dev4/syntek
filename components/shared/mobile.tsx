@@ -24,7 +24,7 @@ const MobileNav = () => {
     {/* LOGO */}
     <Link href="/" className="flex items-center gap-2 md:py-2">
       <Image
-        src="/assets/images/logo.svg"
+        src="/assets/images/logo.png"
         alt="logo"
         width={180}
         height={28}
@@ -49,13 +49,13 @@ const MobileNav = () => {
           <SheetContent className="sheet-content sm:w-64">
             <>
               <Image
-                src="/assets/images/logo.svg"
+                src="/assets/images/logo.png"
                 alt="logo"
                 width={152}
                 height={23}
               />
 
-              <ul className="header-nav_elements">
+              <ul className="header-nav_elements flex">
                 {navLinks.map((link) => {
                   const isActive = link.route === pathname;
 
@@ -63,10 +63,12 @@ const MobileNav = () => {
                     <li
                       key={link.route}
                       className={`${
-                        isActive && "gradient-text"
-                      } p-18-semibold flex whitespace-nowrap text-dark-700`}
+                        isActive && "bg-gradient-to-bl from-gray-600 via-gray-500 to-gray-700"
+                      } p-18-semibold flex whitespace-nowrap text-dark-700 flex`}
                     >
-                      <Link href={link.route}>{link.label}</Link>
+                      <Link href={link.route}>
+                        {link.label}
+                        </Link>
                     </li>
                   );
                 })}

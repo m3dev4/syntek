@@ -5,7 +5,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div>
-      <ModeToggle />
+      {/* <ModeToggle /> */}
       <p>Home</p>
     </div>
   )
