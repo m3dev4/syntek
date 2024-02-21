@@ -3,6 +3,7 @@ import Sidebar from "@/components/shared/sidebar";
 import { ThemeProvider } from "@/components/provider/themeProvider";
 
 import React from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -22,6 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             {/* </ThemeProvider> */}
             </div>
       </div>
+      <Toaster />
     </main>
     
   );

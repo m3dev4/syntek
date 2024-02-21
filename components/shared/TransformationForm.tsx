@@ -34,6 +34,7 @@ import { debounce, deepMergeObjects } from "@/lib/utils";
 // import { MediaUploader } from "./MediaUploader";
 // import { TransformedImage } from "./TransformedImage";
 import { CustomField } from "./customField";
+import MediaUploader from "./mediaUploader";
 
 // ZOD VALIDATION
 export const formSchema = z.object({
@@ -317,6 +318,23 @@ const TransformationForm = ({
             )}
           </div>
         )}
+
+        <div className="media-uploader-field">
+          <CustomField 
+           control={form.control}
+           name="publicId"
+           className="flex size-full flex-col"
+           render={({field}) =>(
+            <MediaUploader 
+             onValueChange={field.onChange}
+             setImage={setImage}
+             publicId={field.value}
+             image={image}
+             type={type}
+            />
+           )}
+          />
+        </div>
 
         {/* ACTIONS */}
         <div className={`flex flex-col gap-4`}>
