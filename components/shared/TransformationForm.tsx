@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-// import { getCldImageUrl } from "next-cloudinary";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -24,17 +23,14 @@ import {
   defaultValues,
   transformationTypes,
 } from "@/constants";
-// import { addImage, updateImage } from "@/lib/actions/image.actions";
-// import { updateCredits } from "@/lib/actions/user.actions";
 import { IImage } from "@/lib/database/models/image.model";
 import { debounce, deepMergeObjects } from "@/lib/utils";
-
-// import { CustomField } from "./CustomField";
-// import { InsufficientCreditsModal } from "./InsufficientCreditsModal";
-// import { MediaUploader } from "./MediaUploader";
-// import { TransformedImage } from "./TransformedImage";
 import { CustomField } from "./customField";
 import MediaUploader from "./mediaUploader";
+import TransformeImage from "./transformeImage";
+import { updateCredits } from "@/lib/actions/user.actions";
+import { getCldImageUrl } from "next-cloudinary";
+import { addImage, updateImage } from "@/lib/actions/image.actions";
 
 // ZOD VALIDATION
 export const formSchema = z.object({
@@ -100,67 +96,67 @@ const TransformationForm = ({
   const onSubmitHandler = async (values: z.infer<typeof formSchema>) => {
     setSubmitting(true);
 
-    // if (data || image) {
-    //   const transformationURL = getCldImageUrl({
-    //     width: image?.width,
-    //     height: image?.height,
-    //     src: image?.publicId,
-    //     ...transformationConfig,
-    //   });
+    if (data || image) {
+      const transformationURL = getCldImageUrl({
+        width: image?.width,
+        height: image?.height,
+        src: image?.publicId,
+        ...transformationConfig,
+      });
 
-    //   const imageData = {
-    //     title: values.title,
-    //     publicId: image?.publicId,
-    //     transformationType: type,
-    //     width: image?.width,
-    //     height: image?.height,
-    //     config: transformationConfig,
-    //     secureURL: image?.secureURL,
-    //     transformationURL,
-    //     aspectRatio: values.aspectRatio,
-    //     prompt: values.prompt,
-    //     color: values.color,
-    //   };
+      const imageData = {
+        title: values.title,
+        publicId: image?.publicId,
+        transformationType: type,
+        width: image?.width,
+        height: image?.height,
+        config: transformationConfig,
+        secureURL: image?.secureURL,
+        transformationURL,
+        aspectRatio: values.aspectRatio,
+        prompt: values.prompt,
+        color: values.color,
+      };
 
-    //   // Add Image
-    //   if (action === "Add") {
-    //     try {
-    //       const newImage = await addImage({
-    //         image: imageData,
-    //         userId,
-    //         path: "/",
-    //       });
+      // Add Image
+      if (action === "Add") {
+        try {
+          const newImage = await addImage({
+            image: imageData,
+            userId,
+            path: "/",
+          });
 
-    //       if (newImage) {
-    //         form.reset();
-    //         setImage(data);
-    //         router.push(`/transformations/${newImage._id}`);
-    //       }
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
+          if (newImage) {
+            form.reset();
+            setImage(data);
+            router.push(`/transformations/${newImage._id}`);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
-    //   // Update Image
-    //   if (action === "Update") {
-    //     if (!data) return router.back();
+      // Update Image
+      if (action === "Update") {
+        if (!data) return router.back();
 
-    //     try {
-    //       const updatedImage = await updateImage({
-    //         userId,
-    //         image: {
-    //           ...imageData,
-    //           _id: data._id,
-    //         },
-    //         path: `/transformations/${data._id}`,
-    //       });
+        try {
+          const updatedImage = await updateImage({
+            userId,
+            image: {
+              ...imageData,
+              _id: data._id,
+            },
+            path: `/transformations/${data._id}`,
+          });
 
-    //       if (updatedImage) router.push(`/transformations/${updatedImage._id}`);
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
-    // }
+          if (updatedImage) router.push(`/transformations/${updatedImage._id}`);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
 
     setSubmitting(false);
   };
@@ -215,7 +211,7 @@ const TransformationForm = ({
     setNewTransformation(null);
 
     startTransition(async () => {
-      // await updateCredits(userId, creditFee);
+      await updateCredits(userId, creditFee);
     });
   };
 
@@ -335,6 +331,14 @@ const TransformationForm = ({
            )}
           />
         </div>
+        <TransformeImage
+          image={image}
+          type={type}
+          title={form.getValues().title}
+          isTransforming={isTransforming}
+          setIsTransforming={setIsTransforming}
+          transformationConfig={transformationConfig} 
+          hasDownload={false} />
 
         {/* ACTIONS */}
         <div className={`flex flex-col gap-4`}>
