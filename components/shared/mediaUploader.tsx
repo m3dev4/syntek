@@ -42,7 +42,7 @@ const MediaUploader = ({
   };
   const onUploadErrorHandler = (result: any) => {
     toast({
-      title: "Quelque chose s'est produite l'ors de la chargement du fichier",
+      title: "Quelque chose s'est produite lors du chargement du fichier",
       description: "Veuillez ressayer s'il vous plait",
       duration: 5000,
       className: "error-toast",
