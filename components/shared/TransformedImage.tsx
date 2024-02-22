@@ -16,7 +16,7 @@ type TransformedImageProps = {
   setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const TransformeImage = ({
+export const TransformedImage = ({
   image,
   type,
   title,
@@ -45,7 +45,7 @@ const TransformeImage = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex-between ">
-        <h3 className="h3-bold text-dark-600">Transformer</h3>
+        <h3 className="h3-bold text-dark-600">Transformed</h3>
 
         {/* DOWNLOAD BUTTON */}
         {hasDownload && (
@@ -57,7 +57,7 @@ const TransformeImage = ({
               height={24}
               className="pb-[6px]"
             />
-            Télécharger
+            Download
           </button>
         )}
       </div>
@@ -92,16 +92,14 @@ const TransformeImage = ({
                 height={50}
                 alt="spinner"
               />
-              <p className="text-white/80">Veuillez Patienter...</p>
+              <p className="text-white/80">Please wait...</p>
             </div>
           )}
         </div>
       ) : (
         // TRANSFORMED IMAGE PLACEHOLDER
-        <div className="transformed-placeholder">Transformation Image</div>
+        <div className="transformed-placeholder">Transformed Image</div>
       )}
     </div>
   );
 };
-
-export default TransformeImage;

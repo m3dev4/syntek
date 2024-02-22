@@ -1,15 +1,14 @@
 "use server";
 
-// import { v2 as cloudinary } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { handleError } from "@/lib//utils";
-
+import User from "@/lib/database/models/user.models";
 import { connectToDatabase } from "@/lib/database/mongoose";
 
 import Image from "../database/models/image.model";
-import User from "../database/models/user.models";
 
 // POPULATE USER
 const populateUser = (query: any) => {
@@ -43,65 +42,65 @@ export async function addImage({ image, userId, path }: AddImageParams) {
 }
 
 // GET ALL
-// export async function getAllImages({
-//   limit = 9,
-//   page = 1,
-//   searchQuery = "",
-// }: {
-//   limit?: number;
-//   page: number;
-//   searchQuery?: string;
-// }) {
-//   try {
-//     await connectToDatabase();
+export async function getAllImages({
+  limit = 9,
+  page = 1,
+  searchQuery = "",
+}: {
+  limit?: number;
+  page: number;
+  searchQuery?: string;
+}) {
+  try {
+    await connectToDatabase();
 
-//     cloudinary.config({
-//       cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-//       api_key: process.env.CLOUDINARY_API_KEY,
-//       api_secret: process.env.CLOUDINARY_API_SECRET,
-//       secure: true,
-//     });
+    cloudinary.config({
+      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+      secure: true,
+    });
 
-//     let expression = "folder=imaginify";
+    let expression = "syntek";
 
-//     if (searchQuery) {
-//       expression += ` AND ${searchQuery}`;
-//     }
+    if (searchQuery) {
+      expression += ` AND ${searchQuery}`;
+    }
 
-//     const { resources } = await cloudinary.search
-//       .expression(expression)
-//       .execute();
+    const { resources } = await cloudinary.search
+      .expression(expression)
+      .execute();
 
-//     const resourcesIds = resources.map((file: any) => file.public_id);
+    const resourcesIds = resources.map((file: any) => file.public_id);
 
-//     let query = {};
-//     if (searchQuery) {
-//       query = {
-//         publicId: {
-//           $in: resourcesIds,
-//         },
-//       };
-//     }
+    let query = {};
+    if (searchQuery) {
+      query = {
+        publicId: {
+          $in: resourcesIds,
+        },
+      };
+    }
 
-//     const skipAmount = (Number(page) - 1) * limit;
+    const skipAmount = (Number(page) - 1) * limit;
 
-//     const images = await populateUser(Image.find(query))
-//       .sort({ updatedAt: -1 })
-//       .skip(skipAmount)
-//       .limit(limit);
+    const images = await populateUser(Image.find(query))
+      .sort({ updatedAt: -1 })
+      .skip(skipAmount)
+      .limit(limit);
 
-//     const totalImages = await Image.find(query).countDocuments();
-//     const savedImages = await Image.find().countDocuments();
+    const totalImages = await Image.find(query).countDocuments();
+    const savedImages = await Image.find().countDocuments();
 
-//     return {
-//       data: JSON.parse(JSON.stringify(images)),
-//       totalPages: Math.ceil(totalImages / limit),
-//       savedImages,
-//     };
-//   } catch (error) {
-//     handleError(error);
-//   }
-// }
+    return {
+      data: JSON.parse(JSON.stringify(images)),
+      totalPages: Math.ceil(totalImages / limit),
+      savedImages,
+    };
+  } catch (error) {
+    handleError(error);
+  }
+}
 
 // GET IMAGES BY USER
 export async function getUserImages({

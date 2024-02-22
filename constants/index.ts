@@ -1,41 +1,41 @@
 export const navLinks = [
     {
-      label: "Home",
+      label: "Accueil",
       route: "/",
       icon: "/assets/icons/home.svg",
     },
     {
-      label: "Image Restore",
+      label: "Restauration d'image",
       route: "/transformations/add/restore",
       icon: "/assets/icons/image.svg",
     },
     {
-      label: "Generative Fill",
+      label: "Remplissage génératif",
       route: "/transformations/add/fill",
       icon: "/assets/icons/stars.svg",
     },
     {
-      label: "Object Remove",
+      label: "Objet Retirer",
       route: "/transformations/add/remove",
       icon: "/assets/icons/scan.svg",
     },
     {
-      label: "Object Recolor",
+      label: "Recoloration d'objets",
       route: "/transformations/add/recolor",
       icon: "/assets/icons/filter.svg",
     },
     {
-      label: "Background Remove",
+      label: "Suppression l'arrière-plan",
       route: "/transformations/add/removeBackground",
       icon: "/assets/icons/camera.svg",
     },
     {
-      label: "Profile",
+      label: "Profil",
       route: "/profile",
       icon: "/assets/icons/profile.svg",
     },
     {
-      label: "Buy Credits",
+      label: "Acheter des crédits",
       route: "/credits",
       icon: "/assets/icons/bag.svg",
     },
@@ -54,15 +54,15 @@ export const navLinks = [
           isIncluded: true,
         },
         {
-          label: "Basic Access to Services",
+          label: "Accès de base aux services",
           isIncluded: true,
         },
         {
-          label: "Priority Customer Support",
+          label: "Soutien prioritaire à la clientèle",
           isIncluded: false,
         },
         {
-          label: "Priority Updates",
+          label: "Mises à jour prioritaires",
           isIncluded: false,
         },
       ],
@@ -79,15 +79,15 @@ export const navLinks = [
           isIncluded: true,
         },
         {
-          label: "Full Access to Services",
+          label: "Plein accès aux services",
           isIncluded: true,
         },
         {
-          label: "Priority Customer Support",
+          label: "Soutien prioritaire à la clientèle",
           isIncluded: true,
         },
         {
-          label: "Priority Updates",
+          label: "Mises à jour prioritaires",
           isIncluded: false,
         },
       ],
@@ -104,15 +104,15 @@ export const navLinks = [
           isIncluded: true,
         },
         {
-          label: "Full Access to Services",
+          label: "Plein accès aux services",
           isIncluded: true,
         },
         {
-          label: "Priority Customer Support",
+          label: "Soutien prioritaire à la clientèle",
           isIncluded: true,
         },
         {
-          label: "Priority Updates",
+          label: "Mises à jour prioritaires",
           isIncluded: true,
         },
       ],

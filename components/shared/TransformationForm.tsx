@@ -1,8 +1,9 @@
-
+/* eslint-disable no-unused-vars */
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { getCldImageUrl } from "next-cloudinary";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -23,14 +24,15 @@ import {
   defaultValues,
   transformationTypes,
 } from "@/constants";
+import { addImage, updateImage } from "@/lib/actions/image.actions";
+import { updateCredits } from "@/lib/actions/user.actions";
 import { IImage } from "@/lib/database/models/image.model";
 import { debounce, deepMergeObjects } from "@/lib/utils";
-import { CustomField } from "./customField";
-import MediaUploader from "./mediaUploader";
-import TransformeImage from "./transformeImage";
-import { updateCredits } from "@/lib/actions/user.actions";
-import { getCldImageUrl } from "next-cloudinary";
-import { addImage, updateImage } from "@/lib/actions/image.actions";
+
+import { CustomField } from "./CustomField";
+import { InsufficientCreditsModal } from "./InsufficientCreditsModal";
+import { MediaUploader } from "./MediaUploader";
+import { TransformedImage } from "./TransformedImage";
 
 // ZOD VALIDATION
 export const formSchema = z.object({
@@ -54,7 +56,7 @@ type TransformationFormProps = {
 type AspectRatioKey = keyof typeof aspectRatioOptions;
 
 // COMPONENT
-const TransformationForm = ({
+export const TransformationForm = ({
   action,
   data = null,
   userId,
@@ -73,7 +75,6 @@ const TransformationForm = ({
     useState<Transformations | null>(null); // Temporarily holds the transformation changes which will be applied after clickng the apply button
   const [transformationConfig, setTransformationConfig] = useState(config); // Holds the final transformation config that will be applied to the image
   const [isTransforming, setIsTransforming] = useState(false); // Loading state on image transformation
-
 
   const initialValues =
     data && action === "Update"
@@ -224,6 +225,8 @@ const TransformationForm = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmitHandler)} className="space-y-5">
+        {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
+
         {/* TITLE FIELD */}
         <CustomField
           control={form.control}
@@ -316,29 +319,32 @@ const TransformationForm = ({
         )}
 
         <div className="media-uploader-field">
-          <CustomField 
-           control={form.control}
-           name="publicId"
-           className="flex size-full flex-col"
-           render={({field}) =>(
-            <MediaUploader 
-             onValueChange={field.onChange}
-             setImage={setImage}
-             publicId={field.value}
-             image={image}
-             type={type}
-            />
-           )}
+          {/* MEDIA UPLOADER */}
+          <CustomField
+            control={form.control}
+            name="publicId"
+            className="flex size-full flex-col"
+            render={({ field }) => (
+              <MediaUploader
+                onValueChange={field.onChange}
+                setImage={setImage}
+                publicId={field.value}
+                image={image}
+                type={type}
+              />
+            )}
+          />
+
+          {/* TRANSFORMED IMAGE */}
+          <TransformedImage
+            image={image}
+            type={type}
+            title={form.getValues().title}
+            isTransforming={isTransforming}
+            setIsTransforming={setIsTransforming}
+            transformationConfig={transformationConfig}
           />
         </div>
-        <TransformeImage
-          image={image}
-          type={type}
-          title={form.getValues().title}
-          isTransforming={isTransforming}
-          setIsTransforming={setIsTransforming}
-          transformationConfig={transformationConfig} 
-          hasDownload={false} />
 
         {/* ACTIONS */}
         <div className={`flex flex-col gap-4`}>
@@ -365,5 +371,3 @@ const TransformationForm = ({
     </Form>
   );
 };
-
-export default TransformationForm;
