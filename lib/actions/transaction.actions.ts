@@ -1,62 +1,62 @@
-// "use server";
+"use server";
 
-// import { redirect } from "next/navigation";
-// import Stripe from "stripe";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
-// import Transaction from "../database/models/transaction.model";
-// import { connectToDatabase } from "../database/mongoose";
-// import { handleError } from "../utils";
+import Transaction from "../database/models/transaction.model";
+import { connectToDatabase } from "../database/mongoose";
+import { handleError } from "../utils";
 
-// import { updateCredits } from "./user.actions";
+import { updateCredits } from "./user.actions";
 
-// // CHECKOUT
-// export async function checkoutCredits(transaction: CheckoutTransactionParams) {
-//   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+// CHECKOUT
+export async function checkoutCredits(transaction: CheckoutTransactionParams) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-//   const amount = Number(transaction.amount) * 100;
+  const amount = Number(transaction.amount) * 100;
 
-//   const session = await stripe.checkout.sessions.create({
-//     line_items: [
-//       {
-//         price_data: {
-//           currency: "usd",
-//           unit_amount: amount,
-//           product_data: {
-//             name: transaction.plan,
-//           },
-//         },
-//         quantity: 1,
-//       },
-//     ],
-//     metadata: {
-//       plan: transaction.plan,
-//       credits: transaction.credits,
-//       buyerId: transaction.buyerId,
-//     },
-//     mode: "payment",
-//     success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
-//     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
-//   });
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          unit_amount: amount,
+          product_data: {
+            name: transaction.plan,
+          },
+        },
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      plan: transaction.plan,
+      credits: transaction.credits,
+      buyerId: transaction.buyerId,
+    },
+    mode: "payment",
+    success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
+    cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
+  });
 
-//   redirect(session.url!);
-// }
+  redirect(session.url!);
+}
 
-// // CREATE
-// export async function createTransaction(transaction: CreateTransactionParams) {
-//   try {
-//     await connectToDatabase();
+// CREATE
+export async function createTransaction(transaction: CreateTransactionParams) {
+  try {
+    await connectToDatabase();
 
-//     // Create new transaction with buyer id
-//     const newTransaction = await Transaction.create({
-//       ...transaction,
-//       buyer: transaction.buyerId,
-//     });
+    // Create new transaction with buyer id
+    const newTransaction = await Transaction.create({
+      ...transaction,
+      buyer: transaction.buyerId,
+    });
 
-//     // Update their credit balance
-//     await updateCredits(transaction.buyerId, transaction.credits);
+    // Update their credit balance
+    await updateCredits(transaction.buyerId, transaction.credits);
 
-//     return JSON.parse(JSON.stringify(newTransaction));
-//   } catch (error) {
-//     handleError(error);
-//   }flex-between fixed h-16 w-full border-b-4 border-purple-100 bg-white p-5 lg:hidden
-// }
+    return JSON.parse(JSON.stringify(newTransaction));
+  } catch (error) {
+    handleError(error);
+  }
+}
