@@ -45,7 +45,7 @@ export const InsufficientCreditsModal = () => {
           />
 
           <AlertDialogTitle className="p-24-bold text-dark-600">
-          Oops....😥 On dirait que vous avez pas plus de crédits gratuits !
+          Oops....😬 On dirait que vous n&#39;avez plus de crédits gratuits !
           </AlertDialogTitle>
 
           <AlertDialogDescription className="p-16-regular py-3">
@@ -58,13 +58,13 @@ export const InsufficientCreditsModal = () => {
             className="button w-full bg-purple-100 text-dark-400"
             onClick={() => router.push("/profile")}
           >
-            Non, Annuler
+            No, Annuler
           </AlertDialogCancel>
           <AlertDialogAction
             className="button w-full bg-purple-gradient  bg-cover"
             onClick={() => router.push("/credits")}
           >
-           Oui, Procéder
+            Oui, Procéder
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

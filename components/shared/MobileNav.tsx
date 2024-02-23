@@ -18,7 +18,7 @@ export const MobileNav = () => {
       {/* LOGO */}
       <Link href="/" className="flex items-center gap-2 md:py-2">
         <Image
-          src="/assets/images/logo-text.svg"
+          src="/assets/images/logo.png"
           alt="logo"
           width={180}
           height={28}
@@ -43,7 +43,7 @@ export const MobileNav = () => {
             <SheetContent className="sheet-content sm:w-64">
               <>
                 <Image
-                  src="/assets/images/logo-text.svg"
+                  src="/assets/images/logo.png"
                   alt="logo"
                   width={152}
                   height={23}
@@ -71,8 +71,8 @@ export const MobileNav = () => {
         </SignedIn>
 
         <SignedOut>
-          <Button asChild className="button bg-gradient-to-r from-sky-600 to-blue-700 bg-cover">
-            <Link href="/sign-in">Se Conecter</Link>
+          <Button asChild className="button bg-gradient-to-r from-indigo-400 to-cyan-400 bg-cover">
+            <Link href="/sign-in">Se connecter</Link>
           </Button>
         </SignedOut>
       </nav>

@@ -38,8 +38,8 @@ export const MediaUploader = ({
     onValueChange(result?.info?.public_id);
 
     toast({
-      title: "Téléchargé avec succès 🙂",
-      description: "1 crédit a été déduit de votre compte",
+      title: "Téléchargé avec succès !😊",
+      description: "1 crédit a été prélevé sur votre compte",
       duration: 5000,
       className: "success-toast",
     });
@@ -55,8 +55,8 @@ export const MediaUploader = ({
       onSuccess={onUploadSuccessHandler}
       onError={() =>
         toast({
-          title: "Il y a un problème lors du téléchargement 😥",
-          description: "Veuillez réessayer",
+          title: "Quelque chose ne va pas lors du téléchargement !😥",
+          description: "Veuillez Réessayer",
           duration: 5000,
           className: "error-toast",
         })
@@ -97,7 +97,7 @@ export const MediaUploader = ({
                     height={24}
                   />
                 </div>
-                <p className="p-14-medium">Cliquez ici pour télécharger</p>
+                <p className="p-14-medium">Télécharger votre Image</p>
               </div>
             )}
           </div>

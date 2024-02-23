@@ -18,7 +18,7 @@ export const Sidebar = () => {
         {/* Logo */}
         <Link href="/" className="sidebar-logo">
           <Image
-            src="/assets/images/logo-text.svg"
+            src="/assets/images/logo.png"
             alt="logo"
             width={180}
             height={28}
@@ -38,8 +38,8 @@ export const Sidebar = () => {
                     key={link.route}
                     className={`sidebar-nav_element group ${
                       isActive
-                        ? "bg-gradient-to-r from-cyan-600 to-cyan-600 text-white"
-                        : "bg-gradient-to-r from-blue-900 to-fuchsia-900 bg-clip-text text-transparent font-bold"
+                        ? "bg-gradient-to-r from-slate-900 to-neutral-900 text-white"
+                        : "text-dark-700"
                     }`}
                   >
                     <Link className="sidebar-link" href={link.route}>
@@ -48,7 +48,7 @@ export const Sidebar = () => {
                         alt="logo"
                         width={24}
                         height={24}
-                        className={`${isActive && "text-slate-600"}`}
+                        className={`${isActive && "brightness-200"}`}
                       />
                       {link.label}
                     </Link>
@@ -92,8 +92,8 @@ export const Sidebar = () => {
           </SignedIn>
 
           <SignedOut>
-            <Button asChild className="button bg-gradient-to-r from-sky-600 to-blue-700 bg-cover">
-              <Link href="/sign-in">Se Connecter</Link>
+            <Button asChild className="button bg-gradient-to-r from-indigo-400 to-cyan-400 bg-cover">
+              <Link href="/sign-in">Se connecter</Link>
             </Button>
           </SignedOut>
         </nav>

@@ -14,7 +14,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
   return (
     <>
       {/* Banner */}
-      <section className="home">
+      <section className="home bg-gradient-to-r from-cyan-900 to-emerald-800">
         <h1 className="home-heading">
         Libérez votre vision créative avec Syntek
         </h1>

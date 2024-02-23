@@ -30,8 +30,8 @@
 //     const query = new URLSearchParams(window.location.search);
 //     if (query.get("success")) {
 //       toast({
-//         title: "Order placed!",
-//         description: "You will receive an email confirmation",
+//         title: "Commande passée !",
+//         description: "Vous recevrez un courriel de confirmation",
 //         duration: 5000,
 //         className: "success-toast",
 //       });
@@ -39,8 +39,8 @@
 
 //     if (query.get("canceled")) {
 //       toast({
-//         title: "Order canceled!",
-//         description: "Continue to shop around and checkout when you're ready",
+//         title: "Commande annulée !",
+//         description: "Continuez à faire des achats et passez à la caisse lorsque vous êtes prêt.",
 //         duration: 5000,
 //         className: "error-toast",
 //       });
@@ -66,7 +66,7 @@
 //           role="link"
 //           className="w-full rounded-full bg-purple-gradient bg-cover"
 //         >
-//           Buy Credit
+//           Acheter du crédit
 //         </Button>
 //       </section>
 //     </form>

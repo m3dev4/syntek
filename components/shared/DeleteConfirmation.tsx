@@ -28,14 +28,14 @@ export const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
           className="button h-[44px] w-full md:h-[54px]"
           variant="destructive"
         >
-          Supprimer image
+          Supprimer l&#39;image
         </Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent className="flex flex-col gap-10">
         <AlertDialogHeader>
           <AlertDialogTitle>
-          Êtes-vous sûr de vouloir supprimer cette image ?😥
+          Êtes-vous sûr de vouloir supprimer cette image ?
           </AlertDialogTitle>
           <AlertDialogDescription className="p-16-regular">
           Cela supprimera définitivement cette image
@@ -43,7 +43,7 @@ export const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>Annuler</AlertDialogCancel>
+          <AlertDialogCancel>Retour</AlertDialogCancel>
           <AlertDialogAction
             className="border bg-red-500 text-white hover:bg-red-600"
             onClick={() =>
