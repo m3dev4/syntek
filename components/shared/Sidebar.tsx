@@ -48,7 +48,7 @@ export const Sidebar = () => {
                         alt="logo"
                         width={24}
                         height={24}
-                        className={`${isActive && "brightness-200"}`}
+                        className={`${isActive && "blue-200"}`}
                       />
                       {link.label}
                     </Link>
@@ -67,7 +67,7 @@ export const Sidebar = () => {
                     key={link.route}
                     className={`sidebar-nav_element group ${
                       isActive
-                        ? "bg-purple-gradient text-white"
+                        ? "bg-gradient-to-r from-slate-900 to-neutral-900 text-white"
                         : "text-dark-700"
                     }`}
                   >

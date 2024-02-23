@@ -68,7 +68,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border overflow-hidden
   }
   body {
     @apply bg-background text-foreground;
@@ -225,7 +225,7 @@
   }
 
   .credits-btn {
-    @apply w-full rounded-full bg-purple-100 bg-cover text-purple-500 hover:text-purple-500;
+    @apply w-full rounded-full bg-dark-700 bg-cover text-white hover:text-purple-500;
   }
 
   /* Profile Page */
