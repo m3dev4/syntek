@@ -58,5 +58,5 @@
 //     return JSON.parse(JSON.stringify(newTransaction));
 //   } catch (error) {
 //     handleError(error);
-//   }
+//   }flex-between fixed h-16 w-full border-b-4 border-purple-100 bg-white p-5 lg:hidden
 // }

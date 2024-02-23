@@ -16,7 +16,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
       {/* Banner */}
       <section className="home">
         <h1 className="home-heading">
-          Unleash Your Creative Vision with Imaginify
+        Libérez votre vision créative avec Syntek
         </h1>
         <ul className="flex-center w-full gap-20">
           {navLinks.slice(1, 5).map((link) => (

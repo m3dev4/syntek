@@ -18,8 +18,8 @@ const Credits = async () => {
   return (
     <>
       <Header
-        title="Buy Credits"
-        subTitle="Choose a credit package that suits your needs!"
+        title="Acheter des crédits"
+        subTitle="Choisissez une formule de crédit adaptée à vos besoins !"
       />
 
       <section>
@@ -32,7 +32,7 @@ const Credits = async () => {
                   {plan.name}
                 </p>
                 <p className="h1-semibold text-dark-600">${plan.price}</p>
-                <p className="p-16-regular">{plan.credits} Credits</p>
+                <p className="p-16-regular">{plan.credits} Crédits</p>
               </div>
 
               {/* Inclusions */}
@@ -57,7 +57,7 @@ const Credits = async () => {
 
               {plan.name === "Free" ? (
                 <Button variant="outline" className="credits-btn">
-                  Free Consumable
+                  Consommable gratuit
                 </Button>
               ) : (
                 <SignedIn>

@@ -57,7 +57,7 @@ export const MobileNav = () => {
                       <li
                         key={link.route}
                         className={`${
-                          isActive && "gradient-text"
+                          isActive && ""
                         } p-18-semibold flex whitespace-nowrap text-dark-700`}
                       >
                         <Link href={link.route}>{link.label}</Link>
@@ -71,8 +71,8 @@ export const MobileNav = () => {
         </SignedIn>
 
         <SignedOut>
-          <Button asChild className="button bg-purple-gradient bg-cover">
-            <Link href="/sign-in">Login</Link>
+          <Button asChild className="button bg-gradient-to-r from-sky-600 to-blue-700 bg-cover">
+            <Link href="/sign-in">Se Conecter</Link>
           </Button>
         </SignedOut>
       </nav>

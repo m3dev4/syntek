@@ -231,7 +231,7 @@ export const TransformationForm = ({
         <CustomField
           control={form.control}
           name="title"
-          formLabel="Image Title"
+          formLabel="Titre Image"
           className="w-full"
           render={({ field }) => <Input {...field} className="input-field" />}
         />
@@ -273,7 +273,7 @@ export const TransformationForm = ({
               control={form.control}
               name="prompt"
               formLabel={
-                type === "remove" ? "Object to Remove" : "Object to Recolor"
+                type === "remove" ? "Objet de la suppression" : "Objet à recolorer"
               }
               className="w-full"
               render={({ field }) => (
@@ -297,7 +297,7 @@ export const TransformationForm = ({
               <CustomField
                 control={form.control}
                 name="color"
-                formLabel="Replacement Color"
+                formLabel="Couleur de remplacement"
                 className="w-full"
                 render={({ field }) => (
                   <Input
@@ -355,7 +355,7 @@ export const TransformationForm = ({
             disabled={isTransforming || newTransformation === null}
             onClick={onTransformHandler}
           >
-            {isTransforming ? "Transforming..." : "Apply Transformation"}
+            {isTransforming ? "Transformer..." : "Appliquer la transformation"}
           </Button>
 
           {/* SAVE BUTTON */}
@@ -364,7 +364,7 @@ export const TransformationForm = ({
             className="submit-button capitalize"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Saving..." : "Save Image"}
+            {isSubmitting ? "Économiser..." : "Enregistrer l'image"}
           </Button>
         </div>
       </form>

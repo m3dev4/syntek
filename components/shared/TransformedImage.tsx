@@ -45,7 +45,7 @@ export const TransformedImage = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex-between ">
-        <h3 className="h3-bold text-dark-600">Transformed</h3>
+        <h3 className="h3-bold text-dark-600">Transformé</h3>
 
         {/* DOWNLOAD BUTTON */}
         {hasDownload && (
@@ -57,7 +57,7 @@ export const TransformedImage = ({
               height={24}
               className="pb-[6px]"
             />
-            Download
+            Télécharger
           </button>
         )}
       </div>
@@ -92,13 +92,13 @@ export const TransformedImage = ({
                 height={50}
                 alt="spinner"
               />
-              <p className="text-white/80">Please wait...</p>
+              <p className="text-white/80">Veuillez patienter...</p>
             </div>
           )}
         </div>
       ) : (
         // TRANSFORMED IMAGE PLACEHOLDER
-        <div className="transformed-placeholder">Transformed Image</div>
+        <div className="transformed-placeholder">Image transformée</div>
       )}
     </div>
   );
