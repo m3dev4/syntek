@@ -97,7 +97,7 @@ export const MediaUploader = ({
                     height={24}
                   />
                 </div>
-                <p className="p-14-medium">Cliquez ici pour télécharger l'image</p>
+                <p className="p-14-medium">Cliquez ici pour télécharger</p>
               </div>
             )}
           </div>

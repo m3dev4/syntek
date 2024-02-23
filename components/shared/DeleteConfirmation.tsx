@@ -28,7 +28,7 @@ export const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
           className="button h-[44px] w-full md:h-[54px]"
           variant="destructive"
         >
-          Supprimer l'image
+          Supprimer image
         </Button>
       </AlertDialogTrigger>
 
