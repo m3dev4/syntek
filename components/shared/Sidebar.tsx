@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { navLinks } from "@/constants";
 
 import { Button } from "../ui/button";
+import { ModeToggle } from "../provider/theme";
 
 export const Sidebar = () => {
   const pathname = usePathname();
@@ -77,7 +78,7 @@ export const Sidebar = () => {
                         alt="logo"
                         width={24}
                         height={24}
-                        className={`${isActive && "brightness-200"}`}
+                        className={`${isActive && ""}`}
                       />
                       {link.label}
                     </Link>
@@ -96,6 +97,10 @@ export const Sidebar = () => {
               <Link href="/sign-in">Se connecter</Link>
             </Button>
           </SignedOut>
+          <div className="absolute top-2 right-7 flex ">
+          <ModeToggle /> 
+          </div>
+         
         </nav>
       </div>
     </aside>

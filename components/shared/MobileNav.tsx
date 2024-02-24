@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { navLinks } from "@/constants";
 
 import { Button } from "../ui/button";
+import { ModeToggle } from "../provider/theme";
 
 export const MobileNav = () => {
   const pathname = usePathname();
@@ -75,6 +76,7 @@ export const MobileNav = () => {
             <Link href="/sign-in">Se connecter</Link>
           </Button>
         </SignedOut>
+       <ModeToggle /> 
       </nav>
     </header>
   );

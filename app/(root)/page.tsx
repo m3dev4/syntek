@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Collection } from "@/components/shared/Collection";
 import { navLinks } from "@/constants";
 import { getAllImages } from "@/lib/actions/image.actions";
+import { ModeToggle } from "@/components/provider/theme";
+import Footer from "@/components/shared/footer";
 
 const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
@@ -42,6 +44,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           page={page}
         />
       </section>
+      <Footer />
     </>
   );
 };
